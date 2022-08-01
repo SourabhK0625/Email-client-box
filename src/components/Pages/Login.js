@@ -9,7 +9,7 @@ const Login = () => {
   const emialInputRef = useRef()
   const passwordInputRef = useRef()
 
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const isAuth = useSelector(state => state.isAuthenticated);
@@ -61,7 +61,7 @@ const Login = () => {
         })
       }
     }).then((data) => {
-        alert('Authentication Successful')
+        alert('User has successfully signed up')
         console.log('User has successfully signed up')
       localStorage.setItem('token', data.idToken)
       localStorage.setItem('email',enteredEmail)
@@ -78,7 +78,6 @@ const Login = () => {
     <>
     <section className={classes.auth}>
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
-      
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor='email'>Your Email</label>
@@ -96,7 +95,7 @@ const Login = () => {
             className={classes.toggle}
             onClick={switchAuthModeHandler}
           >
-            {isLogin ? 'Create new account' : 'Login with existing account'}
+            {!isLogin ? 'Create new account' : 'Login with existing account'}
           </button>
           {/* <Link to='/forgotpassword'> Forgot Password?</Link> */}
         </div>
