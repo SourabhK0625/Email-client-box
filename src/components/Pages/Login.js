@@ -8,7 +8,6 @@ const Login = () => {
   const history = useHistory()
   const emialInputRef = useRef()
   const passwordInputRef = useRef()
-
   const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -95,7 +94,7 @@ const Login = () => {
             className={classes.toggle}
             onClick={switchAuthModeHandler}
           >
-            {!isLogin ? 'Create new account' : 'Login with existing account'}
+            {isLogin ? 'Create new account' : 'Login with existing account'}
           </button>
           {/* <Link to='/forgotpassword'> Forgot Password?</Link> */}
         </div>
