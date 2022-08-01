@@ -1,5 +1,5 @@
 import Login from "./Login";
-import { render, screen  } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import store from "../../store/index";
@@ -58,9 +58,25 @@ describe("AuthForm Testing", () => {
         <Login />
       </Provider>
     );
-    const yourEmail = screen.getByText("Login with existing account");
-    userEvent.click(yourEmail);
+
+    const linkElement = screen.getByText("Login with existing account");
+    userEvent.click(linkElement);
+
     const loginText = screen.getByText("Your Email");
+    expect(loginText).toBeInTheDocument;
+  });
+
+  test("Create New Account Exists", () => {
+    render(
+      <Provider store={store}>
+        <Login />
+      </Provider>
+    );
+
+    const linkElement = screen.getByText("Login with existing account");
+    userEvent.click(linkElement);
+
+    const loginText = screen.getByText("Create new account");
     expect(loginText).toBeInTheDocument;
   });
 });
