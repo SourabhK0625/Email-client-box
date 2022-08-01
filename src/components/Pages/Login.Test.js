@@ -26,7 +26,7 @@ describe('AuthForm Testing', ()=>{
         const loginElement = screen.getByText('Create Account')
         expect(loginElement).toBeInTheDocument
     })
-    test('Login Link Exists', ()=>{
+    test('Login Exists', ()=>{
         render(<Provider store={store}><Login/></Provider>)
         const linkElement = screen.getByText('Login with existing account')
         expect(linkElement).toBeInTheDocument

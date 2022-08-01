@@ -60,12 +60,12 @@ const Login = () => {
         })
       }
     }).then((data) => {
-        alert('User has successfully signed up')
+        alert('User has successfully logged in')
         console.log('User has successfully signed up')
       localStorage.setItem('token', data.idToken)
       localStorage.setItem('email',enteredEmail)
       
-    //   history.replace('/Welcome')
+      history.replace('/Welcome')
       dispatch(authActions.login({token:data.idToken,email:enteredEmail}))
   })
     .catch((err) =>{
