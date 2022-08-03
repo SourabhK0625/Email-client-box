@@ -24,6 +24,7 @@ const CreateEmail = () => {
       to: toEmailInp.current.value,
       heading: emailHeadingInp.current.value,
       body: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+      isRead: false,
     };
     const cleanToEmail = toEmailInp.current.value.replace(/[^a-zA-Z ]/g, "");
     fetch(`https://e-mail-client-box-default-rtdb.firebaseio.com/${cleanToEmail}/inbox.json`,{
@@ -38,7 +39,7 @@ const CreateEmail = () => {
       // console.log(data);
     })
 
-    fetch(`https://mailboxclient-default-rtdb.firebaseio.com/${cleanUserEmail}/sentemails.json`, {
+    fetch(`https://e-mail-client-box-default-rtdb.firebaseio.com/${cleanUserEmail}/sentemails.json`, {
       method: "POST",
       headers: {
         "Content-type": "application-json",
