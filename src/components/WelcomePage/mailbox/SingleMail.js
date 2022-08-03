@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { mailActions } from "../../../context/mailReducer";
+import classes from './SingleMail.module.css';
 
 const SingleMail = (props) => {
   const dispatch = useDispatch();
@@ -8,7 +9,7 @@ const SingleMail = (props) => {
   const endpoint = props.data.ID;
   useEffect(() => {
     fetch(
-      `https://mailboxclient-default-rtdb.firebaseio.com/${cleanUserEmail}/inbox/${endpoint}.json`,
+      `https://e-mail-client-box-default-rtdb.firebaseio.com/${cleanUserEmail}/inbox/${endpoint}.json`,
       {
         method: "PATCH",
         headers: {
@@ -21,7 +22,7 @@ const SingleMail = (props) => {
     ).then((res) => {
       if (res.ok) {
         fetch(
-          `https://mailboxclient-default-rtdb.firebaseio.com/${cleanUserEmail}/inbox.json`
+          `https://e-mail-client-box-default-rtdb.firebaseio.com/${cleanUserEmail}/inbox.json`
         )
           .then((res) => res.json())
           .then((data) => {
@@ -54,12 +55,10 @@ const SingleMail = (props) => {
   };
 
   return (
-    <div>
+    <div className={classes.sigleMailDiv}>
       <button onClick={props.onClose}>Close</button>
       <h3>{props.data.email.from}</h3>
-      <hr />
       <h3>{props.data.email.heading}</h3>
-      <hr />
       <div dangerouslySetInnerHTML={{ __html: props.data.email.body }} />
       <button onClick={deleteClickHandler}>Delete This Email!</button>
     </div>
