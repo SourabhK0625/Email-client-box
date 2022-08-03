@@ -7,7 +7,7 @@ const OutBoxSingleMail = (props) => {
  
   const deleteClickHandler = () => {
     fetch(
-        `https://e-mail-client-box-default-rtdb.firebaseio.com/${cleanUserEmail}/sentemails/${endpoint}.json`,
+      `https://e-mail-client-box-default-rtdb.firebaseio.com/${cleanUserEmail}/sentemails/${endpoint}.json`,
       {
         method: "DELETE",
         headers: {
